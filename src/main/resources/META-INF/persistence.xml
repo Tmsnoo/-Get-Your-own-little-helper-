@@ -8,6 +8,7 @@
     <properties>
     <property name="javax.persistence.jdbc.url"
               value="jdbc:mysql://localhost:3306/Tomek" />
+          <!--      <property name="javax.persistence.sql-load-script-source" value= "META-INF/sql/data.sql" /> Jeśli mam jakiś skryot wczytujacy na starcie dane do baz danych src/resources-->
     <property name="javax.persistence.jdbc.user" value="root" />
     <property name="javax.persistence.jdbc.password" value="coderslab" />
     <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
