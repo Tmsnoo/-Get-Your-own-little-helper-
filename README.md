@@ -1,2 +1,2 @@
 # Communicator
-Twitter app
+Ukrainian

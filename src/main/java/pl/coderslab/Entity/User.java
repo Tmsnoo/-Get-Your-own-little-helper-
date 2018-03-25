@@ -1,6 +1,7 @@
 package pl.coderslab.Entity;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.mindrot.jbcrypt.BCrypt;
 
+@Entity
 public class User {
 
 	@Id
@@ -74,6 +76,11 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public boolean isPasswordCorrect(String password) {
+		return BCrypt.checkpw(password, this.password);
 	}
 
 }
