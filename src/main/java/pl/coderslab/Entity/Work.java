@@ -1,13 +1,15 @@
 package pl.coderslab.Entity;
 
-
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,27 +24,30 @@ public class Work {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Size(min = 3, max = 20)
 	private String title;
-	
+
 	@NotNull
 	@Size(max = 200)
 	private String description;
-	
+
 	@Size(min = 6, max = 15)
 	private int telNo;
-	
+
 	@NotEmpty
 	private int rateHour;
-	
+
 	@NotNull
 	private String city;
-	
+
 	@NotNull
 	private String voivodeship;
-	
+
 	private Timestamp created;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public Long getId() {
 		return id;

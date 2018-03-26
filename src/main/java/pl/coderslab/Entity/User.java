@@ -1,10 +1,13 @@
 package pl.coderslab.Entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -26,9 +29,11 @@ public class User {
 	@Column(unique = true)
 	private String email;
 
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+	private Work work;
+
 	public User() {
 	}
-	
 
 	public User(String username, String password, String email) {
 		super();
@@ -37,6 +42,13 @@ public class User {
 		this.email = email;
 	}
 
+	public Work getWork() {
+		return work;
+	}
+
+	public void setWork(Work work) {
+		this.work = work;
+	}
 
 	public long getId() {
 		return id;
@@ -77,7 +89,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public boolean isPasswordCorrect(String password) {
 		return BCrypt.checkpw(password, this.password);

@@ -18,7 +18,7 @@ import pl.coderslab.repositories.UserRepository;
 
 
 @Controller
-//@RequestMapping("/user")
+@RequestMapping("/user")
 @SessionAttributes({"loggedUser"})
 class UserController {
 	
@@ -34,7 +34,7 @@ class UserController {
 	@PostMapping("/register")
 	public String registerPost(@Valid @ModelAttribute User user,BindingResult br) {
 		this.userRepo.save(user);
-		return "redirect:/login";
+		return "redirect:/user/login";
 	}
 	@GetMapping("/login")
 	public String login(Model m) {
@@ -48,8 +48,10 @@ class UserController {
 			model.addAttribute("loggedUser", u);
 			return "redirect:/";
 		}
-		return "redirect:/login";
+		return "redirect:/user/login";
 	}
+	
+//	public String logOut(HttpSess)
 	
 	
 }
