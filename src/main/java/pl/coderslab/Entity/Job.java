@@ -4,27 +4,26 @@ import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 import pl.coderslab.Listeners.Listener;
 
 @EntityListeners(Listener.class)
 @Entity
-public class Work {
+public class Job {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	@Size(min = 3, max = 20)
 	private String title;
 
@@ -32,11 +31,13 @@ public class Work {
 	@Size(max = 200)
 	private String description;
 
-	@Size(min = 6, max = 15)
-	private int telNo;
+	
+	
+	@Digits(fraction = 0, integer = 14)
+	private Integer telNo;
 
-	@NotEmpty
-	private int rateHour;
+	
+	private Integer rateHour;
 
 	@NotNull
 	private String city;
@@ -45,9 +46,19 @@ public class Work {
 	private String voivodeship;
 
 	private Timestamp created;
-	@OneToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Long getId() {
 		return id;
@@ -73,19 +84,19 @@ public class Work {
 		this.description = description;
 	}
 
-	public int getTelNo() {
+	public Integer getTelNo() {
 		return telNo;
 	}
 
-	public void setTelNo(int telNo) {
+	public void setTelNo(Integer telNo) {
 		this.telNo = telNo;
 	}
 
-	public int getRateHour() {
+	public Integer getRateHour() {
 		return rateHour;
 	}
 
-	public void setRateHour(int rateHour) {
+	public void setRateHour(Integer rateHour) {
 		this.rateHour = rateHour;
 	}
 

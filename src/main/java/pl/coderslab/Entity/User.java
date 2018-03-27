@@ -1,5 +1,8 @@
 package pl.coderslab.Entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
@@ -29,8 +33,11 @@ public class User {
 	@Column(unique = true)
 	private String email;
 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true )
+	private List <Job> jobs = new ArrayList<>();
+
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-	private Work work;
+	private Ukrainian ukrainain;
 
 	public User() {
 	}
@@ -42,12 +49,22 @@ public class User {
 		this.email = email;
 	}
 
-	public Work getWork() {
-		return work;
+	public Ukrainian getUkrainain() {
+		return ukrainain;
 	}
 
-	public void setWork(Work work) {
-		this.work = work;
+	public void setUkrainain(Ukrainian ukrainain) {
+		this.ukrainain = ukrainain;
+	}
+
+	
+
+	public List<Job> getJobs() {
+		return jobs;
+	}
+
+	public void setWorks(List<Job> jobs) {
+		this.jobs = jobs;
 	}
 
 	public long getId() {

@@ -5,13 +5,12 @@ import java.util.Date;
 
 import javax.persistence.PrePersist;
 
-import pl.coderslab.Entity.Work;
+import pl.coderslab.Entity.Job;
 
 public class Listener {
 	@PrePersist
-	public void setCreationTime(Work work) {
-		work.setCreated(new Timestamp(new Date().getTime()));
-		System.out.println(work.getCreated());
+	public void setCreationTime(Job job) {
+		job.setCreated(new Timestamp(new Date().getTime()));
 	}
 }
 

@@ -2,9 +2,9 @@ package pl.coderslab.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import pl.coderslab.Entity.Work;
+import pl.coderslab.Entity.Job;
 
-public interface WorkRepositories extends JpaRepository<Work, Long> {
+public interface JobRepositories extends JpaRepository<Job, Long> {
 	
 
 }
