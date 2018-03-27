@@ -1,7 +1,10 @@
 package pl.coderslab.Entity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -34,7 +38,7 @@ public class Job {
 	
 	
 	@Digits(fraction = 0, integer = 14)
-	private Integer telNo;
+	private long telNo;
 
 	
 	private Integer rateHour;
@@ -45,10 +49,23 @@ public class Job {
 	@NotNull
 	private String voivodeship;
 
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
 	private Timestamp created;
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "User_id")
 	private User user;
+	
+	@OneToMany(cascade = CascadeType.REMOVE)
+	    @JoinColumn(name="id_Category")
+	    private List<Category> categories =
+	        new ArrayList<>();
 
 	
 	
@@ -84,11 +101,11 @@ public class Job {
 		this.description = description;
 	}
 
-	public Integer getTelNo() {
+	public long getTelNo() {
 		return telNo;
 	}
 
-	public void setTelNo(Integer telNo) {
+	public void setTelNo(long telNo) {
 		this.telNo = telNo;
 	}
 

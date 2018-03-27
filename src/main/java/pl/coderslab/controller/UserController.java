@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import pl.coderslab.Entity.Category;
 import pl.coderslab.Entity.User;
+import pl.coderslab.model.CategoryList;
 import pl.coderslab.model.UserDTO;
+import pl.coderslab.repositories.CategoriesRepository;
 import pl.coderslab.repositories.UserRepository;
 
 @Controller
@@ -24,6 +28,8 @@ class UserController {
 
 	@Autowired
 	UserRepository userRepo;
+	@Autowired
+	CategoriesRepository categoryRepo;
 
 	@GetMapping("/register")
 	public String register(Model m) {
@@ -44,9 +50,9 @@ class UserController {
 	}
 
 	@PostMapping("/login")
-	public String loginPost(@Valid @ModelAttribute UserDTO user, BindingResult br, Model model) {
-		User u = this.userRepo.findOneByEmail(user.getEmail());
-		if (u != null && u.isPasswordCorrect(user.getPassword())) {
+	public String loginPost(@Valid @ModelAttribute UserDTO userDTO, BindingResult br, Model model) {
+		User u = this.userRepo.findOneByEmail(userDTO.getEmail());
+		if (u != null && u.isPasswordCorrect(userDTO.getPassword())) {
 			model.addAttribute("loggedUser", u);
 			return "redirect:/";
 		}
@@ -56,6 +62,17 @@ class UserController {
 	public String logOut(SessionStatus status) {
 		status.setComplete();
 		return "redirect:/";
+	}
+	@RequestMapping("/categories")
+	@ResponseBody
+	public String saveCatgories() {
+		CategoryList listCategory = new CategoryList();
+		for(String lc : listCategory.categories) {
+			Category cate = new Category();
+			cate.setName(lc);
+			this.categoryRepo.save(cate);
+		}
+		return "Categories set";
 	}
 
 }

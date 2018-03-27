@@ -29,7 +29,7 @@ public class Ukrainian {
 	private String voivodeship;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "User_id")
 	private User user;
 
 	public long getId() {
