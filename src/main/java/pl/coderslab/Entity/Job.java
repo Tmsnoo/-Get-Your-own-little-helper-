@@ -11,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -38,7 +38,7 @@ public class Job {
 	
 	
 	@Digits(fraction = 0, integer = 14)
-	private long telNo;
+	private Long telNo;
 
 	
 	private Integer rateHour;
@@ -49,23 +49,15 @@ public class Job {
 	@NotNull
 	private String voivodeship;
 
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
 
 	private Timestamp created;
 	@ManyToOne
 	@JoinColumn(name = "User_id")
 	private User user;
 	
-	@OneToMany(cascade = CascadeType.REMOVE)
-	    @JoinColumn(name="id_Category")
-	    private List<Category> categories =
-	        new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.MERGE)
+    private List<Category> categories =
+        new ArrayList<>();
 
 	
 	
@@ -96,16 +88,23 @@ public class Job {
 	public String getDescription() {
 		return description;
 	}
+	public List<Category> getCategories() {
+		return categories;
+	}
+	
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public long getTelNo() {
+	public Long getTelNo() {
 		return telNo;
 	}
 
-	public void setTelNo(long telNo) {
+	public void setTelNo(Long telNo) {
 		this.telNo = telNo;
 	}
 

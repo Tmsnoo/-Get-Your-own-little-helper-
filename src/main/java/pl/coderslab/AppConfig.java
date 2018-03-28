@@ -22,6 +22,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import pl.coderslab.converters.CategoryConverter;
+import pl.coderslab.repositories.CategoriesRepository;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan
@@ -32,7 +35,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		super.addFormatters(registry);
+		registry.addConverter(getCategoryConverter());
 		
+	}
+	@Bean
+	public CategoryConverter getCategoryConverter() {
+		return new CategoryConverter();
 	}
 
 	@Bean(name = "localeResolver")
