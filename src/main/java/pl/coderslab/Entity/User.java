@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -27,17 +28,19 @@ public class User {
 	@NotEmpty
 	private String username;
 	@Size(min = 8)
+	@NotNull
 	private String password;
 	private boolean enabled;
-	@Email
+	@Email(message="Message z Entity")
 	@Column(unique = true)
+	@NotEmpty
 	private String email;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true )
-	private List <Job> jobs = new ArrayList<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true )
+	private List <Job> jobs ;
 
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-	private Ukrainian ukrainain;
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = true)
+	private Ukrainian ukrainian;
 
 	public User() {
 	}
@@ -50,11 +53,11 @@ public class User {
 	}
 
 	public Ukrainian getUkrainain() {
-		return ukrainain;
+		return ukrainian;
 	}
 
-	public void setUkrainain(Ukrainian ukrainain) {
-		this.ukrainain = ukrainain;
+	public void setUkrainian(Ukrainian ukrainian) {
+		this.ukrainian = ukrainian;
 	}
 
 	

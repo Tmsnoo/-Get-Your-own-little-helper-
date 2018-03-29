@@ -15,23 +15,24 @@
 		<div>
 			<label >USERNAME(Ім'я користувача)
 			<form:input path="username" /></label>
+			<form:errors path="username">Username cannot be empty </form:errors>
 		</div>
 		<div>
 			<form:label path="password"  >Set Password<form:password path="password" placeholder="Password" />
-			<form:errors path="password">Password must have at least 8 chars</form:errors></form:label>
+			<form:errors path="password">Password cannot be null</form:errors></form:label>
 		</div>
 		<div>
 			<form:label path="email"  >Your Email Address</form:label>
 			<form:input type="email" path="email" placeholder="Em@il"/>
-			<form:errors path="email"></form:errors>
+			<form:errors path="email">Email already in database</form:errors>
 		</div>
 		<div>
+		<form:errors path="*"></form:errors>
 		<input type="submit"/>
 		</div>
 	</form:form>
 
 
-	<%@ include file="jspf/footer.jspf"%>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 package pl.coderslab.controller;
 
 import javax.validation.Valid;
+import javax.validation.Validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,9 @@ class UserController {
 
 	@PostMapping("/register")
 	public String registerPost(@Valid @ModelAttribute User user, BindingResult br) {
+		if (br.hasErrors()) {
+			return "register";
+		}
 		this.userRepo.save(user);
 		return "redirect:/user/login";
 	}
@@ -51,23 +55,31 @@ class UserController {
 
 	@PostMapping("/login")
 	public String loginPost(@Valid @ModelAttribute UserDTO userDTO, BindingResult br, Model model) {
+		if (br.hasErrors()) {
+			return "login";
+		}
 		User u = this.userRepo.findOneByEmail(userDTO.getEmail());
 		if (u != null && u.isPasswordCorrect(userDTO.getPassword())) {
 			model.addAttribute("loggedUser", u);
-			return "redirect:/";
+			return "redirect:/user/mainProfile";
 		}
 		return "redirect:/user/login";
+	}
+	@RequestMapping("/mainProfile")
+	public String mainProfile() {
+		return "mainPage";
 	}
 	@GetMapping("/logout")
 	public String logOut(SessionStatus status) {
 		status.setComplete();
 		return "redirect:/";
 	}
+
 	@RequestMapping("/categories")
 	@ResponseBody
 	public String saveCatgories() {
 		CategoryList listCategory = new CategoryList();
-		for(String lc : listCategory.categories) {
+		for (String lc : listCategory.categories) {
 			Category cate = new Category();
 			cate.setName(lc);
 			this.categoryRepo.save(cate);

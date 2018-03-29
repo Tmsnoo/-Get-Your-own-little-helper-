@@ -1,5 +1,7 @@
 package pl.coderslab.model;
 
+
+
 public class UserDTO {
 	private String email;
 	private String password;

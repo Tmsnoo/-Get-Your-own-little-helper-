@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<p><b>Get your own Ukrainian</b></p>
+<div class="p-3 mb-2 bg-warning text-dark"><h1>Get your own Ukrainian <span class="badge badge-secondary bg-primary text-dark">Отримати роботу</span></h1></div>

@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <p>   User: ${loggedUser.username}</p>
  <div class="alert alert-primary" role="alert">
  <a href="${pageContext.request.contextPath }/user/login" class="alert-link">Login</a>
 </div>
-<div class="alert alert-primary" role="alert">
+<div class="alert alert-warning" role="alert">
  <a href="${pageContext.request.contextPath }/user/register" class="alert-link">Register</a>
-</div>
-<div class="alert alert-warning" role="alert">
- <a href="${pageContext.request.contextPath }/job/add" class="alert-link">Add Job</a>
-</div>
-<div class="alert alert-warning" role="alert">
- <a href="${pageContext.request.contextPath }/job/logout" class="alert-link">Logut</a>
 </div>

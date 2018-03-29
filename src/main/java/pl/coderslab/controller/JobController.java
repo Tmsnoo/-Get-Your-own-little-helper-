@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.Entity.Category;
 import pl.coderslab.Entity.Job;
 import pl.coderslab.Entity.User;
+import pl.coderslab.model.Voivodeship;
 import pl.coderslab.repositories.CategoriesRepository;
 import pl.coderslab.repositories.JobRepositories;
 import pl.coderslab.repositories.UserRepository;
@@ -47,12 +48,14 @@ public class JobController {
 	
 	@RequestMapping("")
 	public String all() {
-		return "jobList";
+		return "jobs";
 	}
 
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("job", new Job());
+		Voivodeship voivodeship = new Voivodeship();
+		model.addAttribute("voivodeshipList", voivodeship.getVoivodeship());
 		return "jobForm";
 	}
 
@@ -60,7 +63,6 @@ public class JobController {
 	@PostMapping("/add")
 	public String added(HttpSession session, @Valid @ModelAttribute Job job, BindingResult br, Model model) {
 		model.addAttribute(job);
-		model.addAttribute(new Category());
 		if (br.hasErrors()) {
 			return "jobForm";
 		}
@@ -70,5 +72,9 @@ public class JobController {
 		return "redirect:/job";
 
 	}
-
+	@ModelAttribute ("voivodeshipList")
+	public String[]voivodeship() {
+		Voivodeship voivode = new Voivodeship();
+		return voivode.getVoivodeship();
+	}
 }

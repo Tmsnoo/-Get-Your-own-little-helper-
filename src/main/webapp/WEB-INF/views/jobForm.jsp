@@ -35,7 +35,10 @@
 		</div>
 		<div>
 			<form:label path="voivodeship"  >Voivodeship</form:label>
-			<form:input path="voivodeship" placeholder="voivodeship"/>
+			<form:select path="voivodeship">
+    <form:option value="-" label="--Please Select Voivodeship--"/>
+    <form:options items="${voivodeshipList}"/>
+</form:select>
 		</div>
 		<div>
 			<form:checkboxes path="categories"  items="${categoriesList}" 
@@ -46,5 +49,6 @@
 		<input type="submit"/>
 		</div>
 	</form:form>
+	<%@ include file="jspf/footer.jspf" %>
 </body>
 </html>

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,8 +35,6 @@ public class Job {
 	@NotNull
 	@Size(max = 200)
 	private String description;
-
-	
 	
 	@Digits(fraction = 0, integer = 14)
 	private Long telNo;
@@ -55,9 +54,8 @@ public class Job {
 	@JoinColumn(name = "User_id")
 	private User user;
 	
-	@ManyToMany(cascade = CascadeType.MERGE)
-    private List<Category> categories =
-        new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.MERGE, fetch=FetchType.EAGER)
+    private List<Category> categories;
 
 	
 	

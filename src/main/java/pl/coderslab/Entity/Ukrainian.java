@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Ukrainian {
@@ -15,19 +16,22 @@ public class Ukrainian {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	private String firstName;
-	
+
 	@NotNull
 	private String lastName;
-	
+
 	private String sex;
-	
+	@NotNull
+	@Size(max = 200)
+	private String description;
+
 	private String city;
-	
+
 	private String voivodeship;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "User_id")
 	private User user;
@@ -87,5 +91,13 @@ public class Ukrainian {
 	public void setVoivodeship(String voivodeship) {
 		this.voivodeship = voivodeship;
 	}
-	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 }
