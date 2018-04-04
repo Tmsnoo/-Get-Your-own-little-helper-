@@ -3,15 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <body>
-	<p>Welcome : ${loggedUser.username}</p><p>${loggedUser.enabled}</p>
-	<div class="alert alert-warning" role="alert">
-		<a href="${pageContext.request.contextPath }/job/add"
-			class="alert-link">Add Job</a>
-	</div>
-	<div class="alert alert-warning" role="alert">
-		<a href="${pageContext.request.contextPath }/job/" class="alert-link">Find
-			a Job!</a>
-	</div>
+	<h2><p>Welcome : ${loggedUser.username}</p></h2>
+	
+	
+<div>
 	<c:choose>
 		<c:when test="${!loggedUser.enabled}">
 			<a href="${pageContext.request.contextPath }/ukrainian/add"
@@ -20,13 +15,35 @@
 		</c:when>
 		<c:when test="${loggedUser.enabled}">
 			<a href="${pageContext.request.contextPath }/ukrainian/add"
-				class="btn btn-primary btn-lg active" role="button"
+				class="btn btn-primary  badge-success" role="button"
 				aria-pressed="true">Show Profile (Показати профіль)</a>
 		</c:when>
 	</c:choose>
+
+
+
+
+	<div class="alert alert-warning" role="alert">
+		<a href="${pageContext.request.contextPath }/job/add"
+			class="alert-link">Add Job</a>
+	</div>
+	<div class="alert alert-warning" role="alert">
+		<a href="${pageContext.request.contextPath }/job/" class="alert-link">Find
+			a Job!</a>
+	</div>
+	
 	<div class="alert alert-warning" role="alert">
 		<a href="${pageContext.request.contextPath }/user/logout"
 			class="alert-link">Logout</a>
 	</div>
+	
+	
+
 </body>
 </html>
+	
+	
+	
+	
+	
+	

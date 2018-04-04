@@ -16,8 +16,8 @@
 		<div class="collapse" id="navbarToggleExternalContent">
 			<div class="bg-dark p-4">
 				<h3 class="text-white">Select</h3>
-				Telephone<input type="checkbox" id="checkbox1" />
-				<span class="text-muted">Choose voivodeship<c:forEach
+				Telephone<input type="checkbox" id="checkbox1" /> <span
+					class="text-muted">Choose voivodeship<c:forEach
 						items="${voivodeshipList}" var="voivode">
 						<li>${voivode}<input type="checkbox" id="${voivode}" /></li>
 					</c:forEach>
@@ -32,7 +32,8 @@
 		aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<h2 class="text-white">Search Settings</h2></nav>
+	<h2 class="text-white">Search Settings</h2>
+	</nav>
 	</div>
 	Welcome : ${Ukraina.firstName} ${Ukraina.lastName }
 
@@ -50,24 +51,20 @@
 			</tr>
 		</thead>
 		<c:forEach items="${jobList}" var="job">
-			<span class="${job.voivodeship }" id="${job.id}">
-				<tbody>
-					<tr>
-						<td>${job.title}</td>
-						<td>${job.description}</td>
-						<td>${job.rateHour}</td>
-						<td>${job.city}</td>
-						<td>${job.voivodeship}</td>
-						<td>${job.created}</td>
-						<td class="tel">${job.telNo}</td>
-						<c:if test="${job.categories ne null}">
-							<c:forEach items="${job.categories}" var="category">
-								<td><c:out value="${category.name}" /></td>
-							</c:forEach>
-						</c:if>
-					</tr>
-				</tbody>
-			</span>
+			<tr class="${job.voivodeship}">
+				<td>${job.title}</td>
+				<td>${job.description}</td>
+				<td>${job.rateHour}</td>
+				<td>${job.city}</td>
+				<td>${job.voivodeship}</td>
+				<td>${job.created}</td>
+				<td class="tel">${job.telNo}</td>
+				<c:if test="${job.categories ne null}">
+					<c:forEach items="${job.categories}" var="category">
+						<td><c:out value="${category.name}" /></td>
+					</c:forEach>
+				</c:if>
+			</tr>
 		</c:forEach>
 	</table>
 	<%@ include file="jspf/footer.jspf"%>
