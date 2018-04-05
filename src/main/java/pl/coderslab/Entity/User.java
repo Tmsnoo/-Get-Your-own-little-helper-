@@ -30,11 +30,14 @@ public class User {
 	@Size(min = 8)
 	@NotNull
 	private String password;
+	private boolean profil;
 	private boolean enabled;
 	@Email(message="Message z Entity")
 	@Column(unique = true)
 	@NotEmpty
 	private String email;
+	
+	
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true )
 	private List <Job> jobs ;
@@ -66,10 +69,6 @@ public class User {
 		return jobs;
 	}
 
-	public void setWorks(List<Job> jobs) {
-		this.jobs = jobs;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -86,6 +85,22 @@ public class User {
 		this.username = username;
 	}
 
+	public boolean isProfil() {
+		return profil;
+	}
+
+	public void setProfil(boolean profil) {
+		this.profil = profil;
+	}
+
+	public Ukrainian getUkrainian() {
+		return ukrainian;
+	}
+
+	public void setJobs(List<Job> jobs) {
+		this.jobs = jobs;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -95,11 +110,11 @@ public class User {
 	}
 
 	public boolean isEnabled() {
-		return enabled;
+		return profil;
 	}
 
 	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+		this.profil = enabled;
 	}
 
 	public String getEmail() {

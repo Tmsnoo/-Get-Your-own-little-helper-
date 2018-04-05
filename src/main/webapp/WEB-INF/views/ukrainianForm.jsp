@@ -50,7 +50,7 @@
 			<input type="submit" />
 		</div>
 	</form:form>
-	<c:if test="${loggedUser.enabled}">
+	<c:if test="${loggedUser.profil}">
 	<div id="chartContainer" style="height: 300px; width: 100%;"></div></c:if>
 	<div class="alert alert-warning" role="alert">
 	<a href="${pageContext.request.contextPath }/user/mainProfile"

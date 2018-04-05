@@ -18,6 +18,11 @@ public class Category {
 	private Long id;
 
 	private String name;
+	private int painting_jobs;
+	private int gardening_jobs;
+	private int renovations_jobs;
+	private int removal_jobs;
+	private int others;
 	
 	@ManyToMany(mappedBy="categories" , fetch=FetchType.EAGER)
 	private List<Job> jobs =

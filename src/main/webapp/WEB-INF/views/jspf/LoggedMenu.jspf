@@ -8,12 +8,12 @@
 	
 <div>
 	<c:choose>
-		<c:when test="${!loggedUser.enabled}">
+		<c:when test="${!loggedUser.profil}">
 			<a href="${pageContext.request.contextPath }/ukrainian/add"
 				class="btn btn-primary btn-lg active" role="button"
 				aria-pressed="true">Create your Profile (Створіть свій профіль)</a>
 		</c:when>
-		<c:when test="${loggedUser.enabled}">
+		<c:when test="${loggedUser.profil}">
 			<a href="${pageContext.request.contextPath }/ukrainian/add"
 				class="btn btn-primary  badge-success" role="button"
 				aria-pressed="true">Show Profile (Показати профіль)</a>
