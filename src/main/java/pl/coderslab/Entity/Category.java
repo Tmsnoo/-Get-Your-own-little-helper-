@@ -24,6 +24,7 @@ public class Category {
 	private int removal_jobs;
 	private int others;
 	
+	
 	@ManyToMany(mappedBy="categories" , fetch=FetchType.EAGER)
 	private List<Job> jobs =
 	new ArrayList<>();
