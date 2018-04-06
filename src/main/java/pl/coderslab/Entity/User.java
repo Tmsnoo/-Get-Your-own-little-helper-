@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -31,15 +32,18 @@ public class User {
 	@NotNull
 	private String password;
 	private boolean enabled;
-	@Email(message="Message z Entity")
+	private boolean profil;
+
+	@Email(message = "Message z Entity")
 	@Column(unique = true)
 	@NotEmpty
 	private String email;
-	private Collection < String> roles ;
-	
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true )
-	private List <Job> jobs ;
+	@ElementCollection
+	private Collection<String> roles;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Job> jobs;
 
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = true)
 	private Ukrainian ukrainian;
@@ -53,7 +57,7 @@ public class User {
 		setPassword(password);
 		this.email = email;
 	}
-	
+
 	public Collection<String> getRoles() {
 		return roles;
 	}
@@ -69,8 +73,14 @@ public class User {
 	public void setUkrainian(Ukrainian ukrainian) {
 		this.ukrainian = ukrainian;
 	}
-
 	
+	public boolean isProfil() {
+		return profil;
+	}
+
+	public void setProfil(boolean profil) {
+		this.profil = profil;
+	}
 
 	public List<Job> getJobs() {
 		return jobs;
