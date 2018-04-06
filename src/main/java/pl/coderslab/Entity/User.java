@@ -1,6 +1,6 @@
 package pl.coderslab.Entity;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,13 +30,12 @@ public class User {
 	@Size(min = 8)
 	@NotNull
 	private String password;
-	private boolean profil;
 	private boolean enabled;
 	@Email(message="Message z Entity")
 	@Column(unique = true)
 	@NotEmpty
 	private String email;
-	
+	private Collection < String> roles ;
 	
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true )
@@ -54,8 +53,16 @@ public class User {
 		setPassword(password);
 		this.email = email;
 	}
+	
+	public Collection<String> getRoles() {
+		return roles;
+	}
 
-	public Ukrainian getUkrainain() {
+	public void setRoles(Collection<String> roles) {
+		this.roles = roles;
+	}
+
+	public Ukrainian getUkrainian() {
 		return ukrainian;
 	}
 
@@ -67,6 +74,10 @@ public class User {
 
 	public List<Job> getJobs() {
 		return jobs;
+	}
+
+	public void setJobs(List<Job> jobs) {
+		this.jobs = jobs;
 	}
 
 	public long getId() {
@@ -85,22 +96,6 @@ public class User {
 		this.username = username;
 	}
 
-	public boolean isProfil() {
-		return profil;
-	}
-
-	public void setProfil(boolean profil) {
-		this.profil = profil;
-	}
-
-	public Ukrainian getUkrainian() {
-		return ukrainian;
-	}
-
-	public void setJobs(List<Job> jobs) {
-		this.jobs = jobs;
-	}
-
 	public String getPassword() {
 		return password;
 	}
@@ -110,11 +105,11 @@ public class User {
 	}
 
 	public boolean isEnabled() {
-		return profil;
+		return enabled;
 	}
 
 	public void setEnabled(boolean enabled) {
-		this.profil = enabled;
+		this.enabled = enabled;
 	}
 
 	public String getEmail() {

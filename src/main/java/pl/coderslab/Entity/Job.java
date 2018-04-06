@@ -35,11 +35,10 @@ public class Job {
 	@NotNull
 	@Size(max = 200)
 	private String description;
-	
+
 	@Digits(fraction = 0, integer = 14)
 	private Long telNo;
 
-	
 	private Integer rateHour;
 
 	@NotNull
@@ -48,17 +47,15 @@ public class Job {
 	@NotNull
 	private String voivodeship;
 
-
 	private Timestamp created;
+	
 	@ManyToOne
 	@JoinColumn(name = "User_id")
 	private User user;
-	
-	@ManyToMany(cascade = CascadeType.MERGE, fetch=FetchType.EAGER)
-    private List<Category> categories;
 
-	
-	
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	private List<Category> categories;
+
 	public User getUser() {
 		return user;
 	}
@@ -86,10 +83,11 @@ public class Job {
 	public String getDescription() {
 		return description;
 	}
+
 	public List<Category> getCategories() {
 		return categories;
 	}
-	
+
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
