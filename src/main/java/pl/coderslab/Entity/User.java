@@ -66,7 +66,7 @@ public class User {
 		return jobs;
 	}
 
-	public void setWorks(List<Job> jobs) {
+	public void setJobs(List<Job> jobs) {
 		this.jobs = jobs;
 	}
 
