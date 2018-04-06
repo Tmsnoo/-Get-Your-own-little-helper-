@@ -1,6 +1,7 @@
 package pl.coderslab.Entity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,6 +36,8 @@ public class User {
 	@Column(unique = true)
 	@NotEmpty
 	private String email;
+	
+//	private Collection<String> roles;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true )
 	private List <Job> jobs ;
@@ -52,7 +55,7 @@ public class User {
 		this.email = email;
 	}
 
-	public Ukrainian getUkrainain() {
+	public Ukrainian getUkrainian() {
 		return ukrainian;
 	}
 
@@ -61,6 +64,14 @@ public class User {
 	}
 
 	
+
+//	public Collection<String> getRoles() {
+//		return roles;
+//	}
+//
+//	public void setRoles(Collection<String> roles) {
+//		this.roles = roles;
+//	}
 
 	public List<Job> getJobs() {
 		return jobs;
