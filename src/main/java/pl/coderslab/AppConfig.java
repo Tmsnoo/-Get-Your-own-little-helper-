@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -23,7 +24,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import pl.coderslab.converters.CategoryConverter;
-import pl.coderslab.repositories.CategoriesRepository;
 
 @Configuration
 @EnableWebMvc
@@ -81,6 +81,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         super.addResourceHandlers(registry);
         registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
     }
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
 }
-
+//zmienić zapytania i poprawić na gwiazdkę w appconfig
 
