@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,15 +29,19 @@ public class User {
 	private long id;
 	@NotEmpty
 	private String username;
+	
 	@Size(min = 8)
 	@NotNull
 	private String password;
+	
 	private boolean enabled;
+	
 	@Email(message="Message z Entity")
 	@Column(unique = true)
 	@NotEmpty
 	private String email;
 	
+//	@ElementCollection
 //	private Collection<String> roles;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true )
