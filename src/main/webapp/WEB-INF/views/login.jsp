@@ -8,7 +8,7 @@
 <body>
 	<%@ include file="jspf/header.jspf"%>
 	<p>   User: ${loggedUser.username}</p>
-	<form:form method="POST" modelAttribute="user">
+	<form:form method="POST" >
 		<div class="container">
 		<span class="input-group-text" id="">Email 
 			<form:label path="email" />

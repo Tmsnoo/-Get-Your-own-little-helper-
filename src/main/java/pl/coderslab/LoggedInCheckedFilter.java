@@ -17,7 +17,6 @@ import pl.coderslab.Entity.User;
 @WebFilter(description = "Check if user is logged in and if not then redirect", urlPatterns = { "/*" })
 public class LoggedInCheckedFilter //extends OncePerRequestFilter {
 {}
-
 //	@Override
 //	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 //			throws ServletException, IOException {

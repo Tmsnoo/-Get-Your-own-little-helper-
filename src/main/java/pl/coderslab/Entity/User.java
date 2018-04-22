@@ -133,5 +133,36 @@ public class User {
 	public boolean isPasswordCorrect(String password) {
 		return BCrypt.checkpw(password, this.password);
 	}
-
-}
+	@Override
+	public boolean equals(final Object obj) {
+		if(this==obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final User user = (User) obj;
+		if(!email.equals(user.email)) {
+			return false;
+		}
+		return true;
+	}
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("User [id=").append(id).append(", email=").append(email).append(", password=").append(password).append(", enabled=").append(enabled)
+	               .append(", roles=").append(roles).append("]");
+	        return builder.toString();
+	    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = (prime * result)+((email ==null) ? 0 : email.hashCode());
+		return result;
+	}
+		
+	}
