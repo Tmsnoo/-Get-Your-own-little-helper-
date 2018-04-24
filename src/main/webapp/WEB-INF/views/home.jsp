@@ -12,6 +12,7 @@
 <%@ include file="jspf/header.jspf" %>
 <%@ include file="jspf/main_menu.jspf" %>
 <%@ include file="jspf/footer.jspf" %>
+<p class='error'>${msg}</p>
 ${loggedUser.email}
        
 </body>
